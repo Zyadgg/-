@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة بيانات عرض السعر</title>
+  <link rel="stylesheet" href="admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="admin-layout">
+    <header class="admin-header">
+      <h1>إدارة بيانات عرض السعر</h1>
+      <p>يمكنك تعديل البيانات ثم الضغط على "حفظ البيانات" لتحديث ملف <code>data.json</code> مباشرة.</p>
+      <div id="server-status" class="server-status">
+        <span class="status-indicator"></span>
+        <span class="status-text">جارٍ التحقق من حالة الخادم...</span>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>بيانات أساسية</h2>
+      <div class="form-grid">
+        <label class="field">
+          <span>العنوان</span>
+          <input id="input-title" type="text" placeholder="عرض سعر">
+        </label>
+        <label class="field">
+          <span>العميل</span>
+          <input id="input-client" type="text" placeholder="الساده / أبو زياد">
+        </label>
+      </div>
+      <label class="field">
+        <span>المقدمة</span>
+        <textarea id="input-intro" rows="3" placeholder="نص المقدمة"></textarea>
+      </label>
+    </section>
+
+    <section class="card">
+      <div class="section-header">
+        <h2>المجموعات</h2>
+        <button id="add-group" class="btn primary">إضافة مجموعة</button>
+      </div>
+      <div id="groups-container" class="groups-list">
+        <!-- سيتم الملء ديناميكياً -->
+      </div>
+    </section>
+
+    <section class="actions card">
+      <button id="download-json" class="btn success">حفظ البيانات</button>
+      <button id="reset-data" class="btn danger">إعادة التحميل من الملف</button>
+    </section>
+  </main>
+
+  <template id="group-template">
+    <div class="group-card">
+      <div class="group-header">
+        <label class="field">
+          <span>اسم المجموعة (البيان)</span>
+          <input type="text" class="group-label" placeholder="مثال: 195/14">
+        </label>
+        <button class="btn danger remove-group">حذف المجموعة</button>
+      </div>
+      <div class="items-header">
+        <span>النوع</span>
+        <span>المنشأ</span>
+        <span>السعر</span>
+        <span>ملاحظات</span>
+        <span>تمييز</span>
+        <span></span>
+      </div>
+      <div class="items-container"></div>
+      <button class="btn secondary add-item">إضافة عنصر</button>
+    </div>
+  </template>
+
+  <template id="item-template">
+    <div class="item-row">
+      <input type="text" class="item-type" placeholder="النوع">
+      <input type="text" class="item-origin" placeholder="المنشأ">
+      <input type="number" class="item-price" placeholder="السعر">
+      <input type="text" class="item-notes" placeholder="ملاحظات">
+      <label class="highlight-toggle">
+        <input type="checkbox" class="item-highlight">
+        <span>تمييز</span>
+      </label>
+      <button class="btn danger remove-item">حذف</button>
+    </div>
+  </template>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
+
